@@ -49,6 +49,7 @@ if f2>(q/2): #testing
 	f2=1 
 else:
 	f2=0
+print("the message gets converted into: "+str(f2))
 if f2==m:
 	print("The message is decrypted correctly")
 else:
