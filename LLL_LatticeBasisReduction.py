@@ -1,4 +1,4 @@
-# This is an implementation for LLL lattice basis reduction problem in python. The LLL agorithm is used to break encryption by reducing the good basis into bad basis.
+# This is an implementation for LLL lattice basis reduction problem in python. The LLL agorithm is used to break encryption by reducing the bad basis into good basis.
 import numpy as np
 import math
 def magnitude(k):
@@ -59,6 +59,6 @@ while k<len(B):
 		B[k],B[k-1]=B[k-1],B[k]
 		UpdateGramSchmit(B)
 		k=max(k-1,1)
-print("The reduced nearly orthogonal (bad basis) are: ")
+print("The reduced nearly orthogonal (good basis) are: ")
 for i in range(n):
 	print(B[i])
