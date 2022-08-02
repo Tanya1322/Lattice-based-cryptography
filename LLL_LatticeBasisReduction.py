@@ -17,7 +17,6 @@ def dotProduct(a,b):
 
 def coeff(k,j):
 	res=dotProduct(B[k],Borth[j])/dotProduct(Borth[j],Borth[j])
-	#print(res)
 	return res
 
 def mul(a,b):
@@ -28,20 +27,15 @@ def mul(a,b):
 
 def SizeCondition(k,j):
 	if coeff(k,j)<=0.5:
-		print(True)
 		return True
 	else:
-		print(False)
 		return False
 
 def LovaszCond(k):
 	t=3/4-(coeff(k,k-1)**2)
-	#print(t)
 	if magnitude(k,Borth)**2>=t*(magnitude(k-1,Borth)**2):
-		print("Lovasz cond: True")
 		return True
 	else:
-		print("Lovasz Condition: False")
 		return False
 
 def UpdateGramSchmit(B):
@@ -50,7 +44,6 @@ def UpdateGramSchmit(B):
 		temp=[]
 		for j in range(i-1,-1,-1):
 			temp3=coeff(i,j)
-			#print(temp3)
 			temp.append(mul(temp3,Borth[j]))
 		res=[0]*len(B)
 		for j in range(len(temp)):
@@ -69,23 +62,16 @@ Borth=[[0 for i in range(n)] for j in range(n)]
 Borth[0]=B[0]
 k=1
 UpdateGramSchmit(B)
-print(Borth)
-#print(Borth)
 while k<len(B):
 	for j in range(k-1,-1,-1):
 		if not SizeCondition(k,j):
 			B[k]=np.subtract(B[k],mul(round(coeff(k,j)),B[j]))
-			print(B)
 			UpdateGramSchmit(B)
-			#print(B)
 	if LovaszCond(k):
 		k=k+1
 	else:
 		B[k],B[k-1]=B[k-1],B[k]
-		print("After Swapping"+str(B))
 		UpdateGramSchmit(B)
-		print(Borth)
-		#print(Borth)
 		k=max(k-1,1)
 print("The reduced nearly orthogonal (good basis) are: ")
 for i in range(n):
